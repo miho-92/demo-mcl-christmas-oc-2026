@@ -204,3 +204,7 @@ footer{padding-bottom:calc(115px + env(safe-area-inset-bottom,0px))}
 /* 写真コラージュ上部の余白を詰める */
 .benefits{display:flow-root;overflow:visible}
 .benefits>.photo-strip:first-of-type{position:relative;z-index:1;margin-top:-28px}
+
+/* バス利用の補助対象・運行に関する補足 */
+.bus-subsidy-note{color:var(--red);font-size:12px;font-weight:700;line-height:1.9;margin-top:16px;letter-spacing:.01em}
+.bus-safety-note{margin-top:20px;padding-top:18px;border-top:1px solid #deded2;font-size:11px;line-height:2;font-weight:400}
