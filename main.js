@@ -47,6 +47,34 @@
 
   // 読む内容は常に表示したまま、画面に入ったときだけ短く動かす。
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // ネイティブのdetailsを残し、開閉時だけ高さを補間する。
+  document.querySelectorAll('.bus-routes details').forEach(route => {
+    const summary = route.querySelector('summary');
+    let transition = null;
+    summary.addEventListener('click', event => {
+      if (reducedMotion.matches || typeof route.animate !== 'function') return;
+      event.preventDefault();
+      if (transition) return;
+      const opening = !route.open;
+      const startHeight = route.getBoundingClientRect().height;
+      if (opening) route.open = true;
+      const endHeight = opening ? route.getBoundingClientRect().height : summary.getBoundingClientRect().height + 2;
+      route.style.overflow = 'hidden';
+      transition = route.animate([
+        { height: `${startHeight}px` }, { height: `${endHeight}px` }
+      ], { duration: 280, easing: 'cubic-bezier(.22,.68,.2,1)' });
+      const finish = () => {
+        route.open = opening;
+        route.style.overflow = '';
+        transition = null;
+      };
+      transition.addEventListener('finish', finish, { once: true });
+      transition.addEventListener('cancel', finish, { once: true });
+    });
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches && transition) transition.cancel();
+    });
+  });
   const activeReveals = new Set();
   if ('IntersectionObserver' in window && typeof Element.prototype.animate === 'function') {
     const revealObserver = new IntersectionObserver(entries => {

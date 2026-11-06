@@ -96,3 +96,102 @@ footer{padding-bottom:calc(115px + env(safe-area-inset-bottom,0px))}
 
 /* デザイナーの元の星・模様を活かし、追加した光の装飾を無効化 */
 .hero-sparkles,.hero-sparkles::before,.twinkle,.benefits-heading::after,.program-heading::after,.apply::after{display:none;animation:none;content:none}
+
+/* バス時刻表：開いているルートと乗車順を追いやすく */
+.bus-routes{display:grid;gap:10px}
+.bus-routes details,.bus-routes details:last-child{border:1px solid #d8ddd3;border-radius:4px;background:#fff}
+.bus-routes summary{padding:17px 34px 17px 13px;font-size:12px;line-height:1.8;transition:background-color .2s,color .2s}
+.bus-routes summary:after{content:'＋';right:12px;top:15px}
+.bus-routes details[open] summary{background:#007f69;color:#fff}
+.bus-routes details[open] summary:after{content:'−'}
+.bus-routes table{width:calc(100% - 26px);margin:14px 13px 18px;font-size:12px}
+.bus-routes caption{font-size:10px;padding-bottom:8px}
+.bus-routes th,.bus-routes td{padding:12px 5px;border-color:#e5e9e1;vertical-align:middle}
+.bus-routes th{width:auto;font-weight:500;line-height:1.7}
+.bus-routes td{text-align:right;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;color:#007f69;letter-spacing:0;padding-left:12px}
+.bus-routes tr:nth-child(even){background:#f5f8f3}
+@media(prefers-reduced-motion:reduce){.bus-routes summary{transition:none}}
+
+/* 申し込み後の案内として、公式LINEへの問い合わせ導線 */
+.line-contact{margin-top:52px;padding-top:36px;border-top:1px solid #ffffff65}
+.line-contact h3{font-size:17px;font-weight:700;line-height:1.8;letter-spacing:.02em}
+.line-contact>p{font-size:12px;font-weight:400;line-height:1.95;margin-top:12px;letter-spacing:.01em}
+.line-contact-button{display:flex;align-items:center;justify-content:center;gap:12px;min-height:54px;margin:23px auto 0;padding:12px 16px;max-width:290px;border:2px solid #fff;border-radius:6px;background:#fff;color:#087c43;text-decoration:none;font-size:16px;font-weight:700;line-height:1.6;letter-spacing:.02em}
+.line-contact .line-contact-account{font-size:10px;line-height:1.8;margin-top:10px}
+@media(max-width:360px){.line-contact h3{font-size:16px}.line-contact>p{font-size:11px}.line-contact-button{font-size:15px}}
+
+/* 締切とあわせてバスの予約必須を明示 */
+.bus-reservation-required{font-size:19px;line-height:1.65;font-weight:800;letter-spacing:.03em;margin:0 0 21px;padding:0 0 18px;border-bottom:1px solid #ffffff70;text-align:left}
+
+/* 赤い予約案内の右側に、白い線画のバス */
+.bus-deadline{position:relative}
+.bus-illustration{position:absolute;right:12px;bottom:25px;width:54px;height:54px;color:#fff;pointer-events:none}
+.bus-reservation-required{padding-right:0;font-size:19px;letter-spacing:.03em}
+.bus-deadline p{padding-right:48px}
+@media(max-width:360px){.bus-illustration{right:9px;bottom:24px;width:42px;height:42px}.bus-deadline p{padding-right:33px;gap:7px}.bus-deadline strong{font-size:15px}.bus-deadline span{font-size:9px;padding-left:5px;padding-right:5px}.bus-reservation-required{font-size:18px}}
+
+/* 締切時刻はひとまとまりにし、バスは締切日の横で左向きに */
+.bus-deadline small{white-space:nowrap}
+.bus-illustration{bottom:65px;transform:scaleX(-1)}
+@media(max-width:360px){.bus-illustration{bottom:62px}}
+
+/* 日付と時刻を一行に収め、締切ラベルはその上に配置 */
+.bus-deadline p{display:block;padding-right:0}
+.bus-deadline p>span{display:inline-block;margin-bottom:7px}
+.bus-deadline strong{display:flex;align-items:baseline;gap:7px;white-space:nowrap;font-size:19px}
+.bus-deadline small{display:inline;font-size:11px;white-space:nowrap}
+.bus-illustration{top:23px;bottom:auto;right:13px;width:82px;height:65px;transform:none}
+.bus-reservation-required{padding-right:73px;font-size:18px;letter-spacing:0}
+@media(max-width:360px){.bus-illustration{top:23px;bottom:auto;right:10px;width:68px;height:58px}.bus-reservation-required{padding-right:61px;font-size:16px}.bus-deadline strong{font-size:17px;gap:5px}}
+
+/* 締切はラベル・日付・時刻を横一列に */
+.bus-deadline p{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:8px;padding-right:0}
+.bus-deadline p>span{margin-bottom:0;font-size:10px;padding:1px 7px}
+.bus-deadline strong{font-size:17px;gap:5px;letter-spacing:0}
+.bus-deadline small{font-size:11px}
+.bus-illustration{right:20px}
+.bus-reservation-required{padding-right:80px}
+@media(max-width:360px){.bus-deadline p{gap:6px}.bus-deadline p>span{font-size:9px;padding:1px 5px}.bus-deadline strong{font-size:15px;gap:4px}.bus-illustration{right:17px}.bus-reservation-required{padding-right:68px}}
+
+/* 4文字の締切ラベルと日付の開始位置を統一 */
+.bus-deadline p{grid-template-columns:calc(4em + 16px) minmax(0,1fr);font-size:10px}
+.bus-deadline p>span{text-align:center;white-space:nowrap;letter-spacing:0}
+@media(max-width:360px){.bus-deadline p{grid-template-columns:calc(4em + 12px) minmax(0,1fr);font-size:9px}}
+
+
+/* 会場住所と地図リンクを読みやすく */
+.venue .venue-address{font-size:14px;line-height:1.9;letter-spacing:.02em}
+.venue a{font-size:15px;min-height:44px;padding:8px 12px;margin-top:16px}
+
+/* 会場と申し込みの境目をサンタがゆっくり横切る */
+.reservation{position:relative}
+.santa-crossing{position:absolute;top:-66px;left:0;width:100%;height:124px;overflow:hidden;pointer-events:none}
+.santa-crossing img{position:absolute;top:24px;left:0;width:150px;height:75px;max-width:none;filter:drop-shadow(0 1px 1px #63332855) drop-shadow(0 0 2px #63332830);transform-origin:50% 60%;animation:santa-crossing 12s linear infinite,santa-float 3s ease-in-out infinite}
+@keyframes santa-crossing{0%{left:0;top:24px}25%{top:12px}50%{top:6px}75%{top:12px}100%{left:100%;top:24px}}
+@keyframes santa-float{0%,100%{transform:translateY(3px) rotate(2deg)}50%{transform:translateY(-5px) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.santa-crossing img{animation:none;left:calc(50% - 75px);transform:none}}
+
+/* 会場名を一行にまとめ、住所の下に徒歩アクセスを掲載 */
+.venue-school-name{display:inline-block;white-space:nowrap;font-size:clamp(9px,2.65vw,10.4px);letter-spacing:0}
+.venue-directions{margin:24px 0 0;padding-left:1.25em;text-align:left;font-size:12px;line-height:1.9;font-weight:500;letter-spacing:.01em}
+.venue-directions li+li{margin-top:9px}
+
+/* 駅・バス停と徒歩時間を整列してアクセスを読みやすく */
+.venue-directions{list-style:none;margin-top:25px;padding:0;color:var(--ink);letter-spacing:0}
+.venue-directions li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:13px 0;border-top:1px solid #dfe5db}
+.venue-directions li+li{margin-top:0}
+.venue-directions li:last-child{border-bottom:1px solid #dfe5db}
+.venue-directions small{display:block;font-size:9px;font-weight:400;color:#607269;line-height:1.7;margin-bottom:3px}
+.access-stop{display:block;font-size:12px;line-height:1.8;font-weight:600}
+.access-walk{white-space:nowrap;font-size:10px;color:#007f69}
+.access-walk strong{font-size:20px;font-weight:700;margin:0 2px;font-variant-numeric:tabular-nums}
+@media(max-width:360px){.access-stop{font-size:11px}.access-walk strong{font-size:18px}}
+
+/* 学校名は2校とも読みやすい共通サイズに */
+.venue-school-name{font-size:13px;font-weight:600;line-height:1.9;letter-spacing:0}
+.venue>p:first-of-type{margin-left:-12px;margin-right:-12px}
+.overview .event-details dd:has(>.venue-school-name){margin-left:-12px;margin-right:-12px}
+@media(max-width:360px){.venue-school-name{font-size:12px}}
+
+/* 学校名変更の対象校を注記内にも明記 */
+.overview .event-details .school-name-note{display:block;margin-top:8px;font-size:10px;line-height:1.8;font-weight:400;letter-spacing:0}
