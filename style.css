@@ -195,3 +195,12 @@ footer{padding-bottom:calc(115px + env(safe-area-inset-bottom,0px))}
 
 /* 学校名変更の対象校を注記内にも明記 */
 .overview .event-details .school-name-note{display:block;margin-top:8px;font-size:10px;line-height:1.8;font-weight:400;letter-spacing:0}
+
+/* 特典①②の削除後、写真からランチ・抽選会へつなぐ */
+.benefits{padding-top:0}
+.benefits>.photo-strip:first-of-type{margin-top:0}
+.benefits .dm-content{padding-top:32px}
+
+/* 写真コラージュ上部の余白を詰める */
+.benefits{display:flow-root;overflow:visible}
+.benefits>.photo-strip:first-of-type{position:relative;z-index:1;margin-top:-100px}
